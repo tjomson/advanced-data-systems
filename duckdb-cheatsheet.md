@@ -1,5 +1,54 @@
 # Handy DuckDB things
 
+## Building
+
+### Build for debugging in python
+
+Install Python dependency
+
+`sudo dnf install python3-devel`
+
+then
+
+`sudo BUILD_PYTHON=1 make debug -j10`
+
+Automatically adds entry to pip
+
+### Attaching to python program
+
+Add `launch.json` to duckdb repo
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Attach",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "${workspaceFolder}/build/debug/duckdb",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}
+```
+
+Run a python program, for example just open interactive in terminal `python3`.
+
+Run debugger for duckdb. Choose the python-process
+
 ## Tooling
 
 - Open db file:

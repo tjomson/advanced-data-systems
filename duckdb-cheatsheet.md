@@ -49,6 +49,24 @@ Run a python program, for example just open interactive in terminal `python3`.
 
 Run debugger for duckdb. Choose the python-process
 
+## Benchmarking
+
+`install tpch;`
+
+`load tpch;`
+
+Scale factor is size of database (exponential). Calling dbgen again will not override previous db, but add to it.
+
+`call dbgen(sf=1);`
+
+View generated tables.
+
+`call duckdb_tables();`
+
+Run benchmark, replace the number with any 1-22 for tpc-h
+
+`pragma tpch(1)`
+
 ## Tooling
 
 - Open db file:
